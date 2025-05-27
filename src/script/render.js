@@ -1,59 +1,34 @@
-import { ROOT_ELEMENT_SELECTOR } from './constants.js'
-import mockData from './mockData.js'
+import MOCK_DATA from './mockData.js'
+import {
+  ROOT_ELEMENT_SELECTOR,
+  ATTRIBUTE_DATA_DATE_END,
+  ATTRIBUTE_DATA_DATE_START,
+  ATTRIBUTE_DATA_COMPLETED,
+  DEFAULT_LOCAL_DATE_STRING,
+} from './constants.js'
+import { TaskContainer } from './components/index.js'
 
 const initData = null // development only
 
-// const createTaskElement = () => {}
-
-function CreateElement({ tagName, content, props }) {
-  this.tagName = tagName
-  this.content = content
-  this.props = props
-  this.element = document.createElement(this.tagName || 'div')
-}
-CreateElement.prototype.setAttributes = function () {
-  if (!this.props) return
-
-  for (let prop in this.props) {
-    if (prop === 'className') {
-      this.element.className = this.props[prop]
-    }
-
-    this.element.setAttribute(prop, this.props[prop])
-  }
-}
-CreateElement.prototype.init = function () {
-  this.element.innerHTML = this.content || ''
-  this.setAttributes()
-
-  return this.element
-}
-
 export default function render() {
-  const data = initData || mockData
-  const taskProps = {
-    tagName: 'div',
-    content: '',
-    props: {
-      className: 'p-4 border rounded',
-    },
-  }
+  const data = initData || MOCK_DATA
   const fragment = new DocumentFragment()
 
   data.forEach(task => {
-    const element = new CreateElement({
-      ...taskProps,
+    const element = TaskContainer({
       content: task.title,
-      props: {
-        ...taskProps.props,
-        'data-completed': task.completed,
-        'data-tags': task.tags.join(', '),
-        'data-create-date': new Date(task.createDate).toUTCString(),
-        'data-complete-date': task.completeDate
-          ? new Date(task.completeDate).toUTCString()
+      restProps: {
+        [ATTRIBUTE_DATA_COMPLETED]: task.completed,
+        [ATTRIBUTE_DATA_DATE_START]: new Date(
+          task.dateCreate
+        ).toLocaleDateString(DEFAULT_LOCAL_DATE_STRING),
+        [ATTRIBUTE_DATA_DATE_END]: task.dateComplete
+          ? new Date(task.dateComplete).toLocaleDateString(
+              DEFAULT_LOCAL_DATE_STRING
+            )
           : '',
       },
-    }).init()
+    })
 
     fragment.append(element)
   })

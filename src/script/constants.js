@@ -1,1 +1,7 @@
 export const ROOT_ELEMENT_SELECTOR = '#task-list'
+export const DEFAULT_LOCAL_DATE_STRING = 'en-GB'
+export const TASK_DATE_LABEL_START = 'Created'
+export const TASK_DATE_LABEL_END = 'Completed'
+export const ATTRIBUTE_DATA_DATE_START = 'data-date-start'
+export const ATTRIBUTE_DATA_DATE_END = 'data-date-end'
+export const ATTRIBUTE_DATA_COMPLETED = 'data-completed'
