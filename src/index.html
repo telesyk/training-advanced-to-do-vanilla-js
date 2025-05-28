@@ -12,19 +12,20 @@
   <div class="max-w-2xl mx-auto bg-white shadow-lg rounded-lg p-6">
     <h1 class="text-2xl font-bold mb-4">🗂 Task Manager</h1>
     <div class="mt-6 flex gap-2">
-      <input id="task-input" type="text" placeholder="Add new task..." class="flex-1 border px-3 py-2 rounded" />
-      <button id="add-btn" class="bg-blue-600 text-white px-4 py-2 rounded">➕ Add</button>
+      <input id="task-input" type="text" placeholder="Add new task..." class="flex-1 border px-3 py-2 rounded"
+        data-action="onchange-add" />
+      <button id="add-btn" data-action="add" class="bg-blue-600 text-white px-4 py-2 rounded">➕ Add</button>
     </div>
     <!-- Tags -->
     <!-- Filtering & Sorting -->
     <nav class="flex gap-2 my-4 justify-between">
       <div class="flex gap-2">
-        <button data-filter="all" class="border rounded py-3 px-5">All</button>
-        <button data-filter="in-progress" class="border rounded py-3 px-5">In Progress</button>
-        <button data-filter="completed" class="border rounded py-3 px-5">Completed</button>
+        <button data-action="filter-all" class="border rounded py-3 px-5">All</button>
+        <button data-action="filter-in-progress" class="border rounded py-3 px-5">In Progress</button>
+        <button data-action="filter-completed" class="border rounded py-3 px-5">Completed</button>
       </div>
       <div class="flex gap-2">
-        <button data-sort-by="date" class="border rounded py-3 px-5">↕️ By Date</button>
+        <button data-action="sort-by-date" class="border rounded py-3 px-5">↕️ By Date</button>
       </div>
     </nav>
     <!-- Task List -->

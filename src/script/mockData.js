@@ -1,5 +1,6 @@
 export default [
   {
+    id: Date.now(),
     title: 'Finish JavaScript closures tutorial',
     completed: true,
     // tags: ['JavaScript', 'functions'],
@@ -7,6 +8,7 @@ export default [
     dateComplete: new Date('2025-05-11T16:30:00'),
   },
   {
+    id: Date.now() + 1,
     title: 'Design UI for Task Manager',
     completed: false,
     // tags: ['UI', 'TailwindCSS'],

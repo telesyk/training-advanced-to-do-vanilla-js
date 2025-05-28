@@ -13,13 +13,19 @@ export function TaskContainer({ content, restProps }) {
   fragmentButtons.append(
     TaskButton({
       icon: '☑️',
-      className: 'basis-1/2 py-3 px-5 hover:bg-green-50',
+      props: {
+        'data-action': 'complete',
+        className: 'basis-1/2 py-3 px-5 hover:bg-green-50',
+      },
     })
   )
   fragmentButtons.append(
     TaskButton({
       icon: '🗑️',
-      className: 'basis-1/2 py-3 px-5 hover:bg-red-50',
+      props: {
+        'data-action': 'remove',
+        className: 'basis-1/2 py-3 px-5 hover:bg-red-50',
+      },
     })
   )
 

@@ -1,12 +1,12 @@
-import MOCK_DATA from './mockData.js'
+import MOCK_DATA from '../mockData.js'
 import {
-  ROOT_ELEMENT_SELECTOR,
+  SELECTOR_ROOT_ELEMENT,
   ATTRIBUTE_DATA_DATE_END,
   ATTRIBUTE_DATA_DATE_START,
   ATTRIBUTE_DATA_COMPLETED,
   DEFAULT_LOCAL_DATE_STRING,
-} from './constants.js'
-import { TaskContainer } from './components/index.js'
+} from '../constants.js'
+import { TaskContainer } from '../components/index.js'
 
 const initData = null // development only
 
@@ -18,6 +18,7 @@ export default function render() {
     const element = TaskContainer({
       content: task.title,
       restProps: {
+        id: task.id,
         [ATTRIBUTE_DATA_COMPLETED]: task.completed,
         [ATTRIBUTE_DATA_DATE_START]: new Date(
           task.dateCreate
@@ -33,5 +34,5 @@ export default function render() {
     fragment.append(element)
   })
 
-  document.querySelector(ROOT_ELEMENT_SELECTOR).append(fragment)
+  document.querySelector(SELECTOR_ROOT_ELEMENT).append(fragment)
 }
