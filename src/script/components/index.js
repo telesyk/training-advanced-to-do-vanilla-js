@@ -4,4 +4,4 @@ import { TaskTitle } from './TaskTitle.js'
 import { Task } from './Task.js'
 import { EmptyList } from './EmptyList.js'
 
-export { TaskButton, Task, TaskTitle, TaskDate, EmptyList }
+export { TaskButton, TaskTitle, TaskDate, Task, EmptyList }

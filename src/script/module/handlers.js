@@ -1,3 +1,6 @@
+import render from './render'
+import TaskStore from './store-manager'
+
 export const handleFilter = () => {
   console.log('hadnle filter')
 }
@@ -7,21 +10,32 @@ export const handleSorting = () => {
 }
 
 export const handleAdd = value => {
-  /*
-   * - Take the Value {String} of new Task
-   *   - Return if no any value or empty
-   * - Create the rest  of params/details of the Task
-   * - Update main State with new Task
-   * - Update the list - re-rendering
-   */
   if (!value) return
-  console.log('hadnle add', value)
+
+  const taskItem = {
+    id: Date.now(),
+    title: value,
+    completed: false,
+    dateCreate: new Date(),
+    dateComplete: null,
+  }
+
+  new TaskStore().add(taskItem)
+  render()
 }
 
-export const handleRemove = eventTarget => {
-  console.log('hadnle remove', eventTarget)
+export const handleRemove = itemId => {
+  new TaskStore().remove(+itemId)
+  render()
 }
 
-export const handleComplete = eventTarget => {
-  console.log('hadnle complete', eventTarget)
+export const handleComplete = itemId => {
+  const storage = new TaskStore()
+  const currentTask = storage.get().find(item => item.id === +itemId)
+
+  storage.update({
+    ...currentTask,
+    completed: !currentTask.completed,
+  })
+  render()
 }

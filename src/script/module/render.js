@@ -1,4 +1,4 @@
-import Store from './store-manager.js'
+import TaskStore from './store-manager.js'
 import {
   SELECTOR_ROOT_ELEMENT,
   ATTRIBUTE_DATA_DATE_END,
@@ -9,11 +9,14 @@ import {
 import { Task, EmptyList } from '../components/index.js'
 
 export default function render() {
-  const storage = new Store().get()
+  const storage = new TaskStore().get()
   const fragment = new DocumentFragment()
+
+  document.querySelector(SELECTOR_ROOT_ELEMENT).innerHTML = ''
 
   if (!storage || storage.length < 1) {
     const elementEmptyList = EmptyList()
+
     fragment.append(elementEmptyList)
   } else {
     storage.forEach(task => {

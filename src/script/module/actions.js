@@ -24,10 +24,10 @@ export function actions() {
         elementInput.value = ''
         break
       case EVENT_ACTION.remove:
-        handleRemove(event.target)
+        handleRemove(event.target.dataset.id)
         break
       case EVENT_ACTION.complete:
-        handleComplete(event.target)
+        handleComplete(event.target.dataset.id)
         break
       case EVENT_ACTION.sortByDate:
         handleSorting()

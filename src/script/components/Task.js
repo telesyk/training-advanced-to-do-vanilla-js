@@ -22,6 +22,7 @@ export function Task({ content, restProps }) {
     TaskButton({
       icon: '☑️',
       props: {
+        'data-id': restProps.id,
         'data-action': 'complete',
         className: 'basis-1/2 py-3 px-5 hover:bg-green-50',
       },
@@ -31,6 +32,7 @@ export function Task({ content, restProps }) {
     TaskButton({
       icon: '🗑️',
       props: {
+        'data-id': restProps.id,
         'data-action': 'remove',
         className: 'basis-1/2 py-3 px-5 hover:bg-red-50',
       },
