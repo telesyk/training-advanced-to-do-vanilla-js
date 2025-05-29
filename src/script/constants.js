@@ -17,3 +17,4 @@ export const EVENT_ACTION = {
   sortByDate: 'sort-by-date',
   onChangeAdd: 'onchange-add',
 }
+export const STORAGE_NAME = 'task-manager-training-project'
