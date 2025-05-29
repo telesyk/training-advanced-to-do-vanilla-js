@@ -1,6 +1,6 @@
 import { TaskButton } from './TaskButton.js'
 import { TaskDate } from './TaskDate.js'
 import { TaskTitle } from './TaskTitle.js'
-import { TaskContainer } from './TaskContainer.js'
+import { Task } from './Task.js'
 
-export { TaskButton, TaskContainer, TaskTitle, TaskDate }
+export { TaskButton, Task, TaskTitle, TaskDate }

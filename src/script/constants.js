@@ -17,7 +17,3 @@ export const EVENT_ACTION = {
   sortByDate: 'sort-by-date',
   onChangeAdd: 'onchange-add',
 }
-
-// export const EVENT_ATTRIBUTE_FILTER = 'data-filter'
-// export const EVENT_ATTRIBUTE_SORT = 'data-sort-by'
-// export const EVENT_ATTRIBUTE_ADD_TASK = 'data-add-task'

@@ -6,7 +6,7 @@ import {
   ATTRIBUTE_DATA_COMPLETED,
   DEFAULT_LOCAL_DATE_STRING,
 } from '../constants.js'
-import { TaskContainer } from '../components/index.js'
+import { Task } from '../components/index.js'
 
 const initData = null // development only
 
@@ -15,7 +15,7 @@ export default function render() {
   const fragment = new DocumentFragment()
 
   data.forEach(task => {
-    const element = TaskContainer({
+    const element = Task({
       content: task.title,
       restProps: {
         id: task.id,

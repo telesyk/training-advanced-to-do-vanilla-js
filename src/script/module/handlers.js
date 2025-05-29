@@ -7,6 +7,14 @@ export const handleSorting = () => {
 }
 
 export const handleAdd = value => {
+  /*
+   * - Take the Value {String} of new Task
+   *   - Return if no any value or empty
+   * - Create the rest  of params/details of the Task
+   * - Update main State with new Task
+   * - Update the list - re-rendering
+   */
+  if (!value) return
   console.log('hadnle add', value)
 }
 

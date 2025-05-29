@@ -8,7 +8,15 @@ import {
 import CreateElement from '../module/create-element.js'
 import { TaskButton, TaskDate, TaskTitle } from './index.js'
 
-export function TaskContainer({ content, restProps }) {
+/**
+ * Renders a Task component as a DOM element.
+ * @param {Object} param0
+ * @param {string} param0.content - The task title/content.
+ * @param {Object} param0.restProps - Additional properties (dates, completion, etc).
+ * @returns {HTMLElement} The rendered task element.
+ */
+export function Task({ content, restProps }) {
+  // Create action buttons (Complete, Remove)
   const fragmentButtons = new DocumentFragment()
   fragmentButtons.append(
     TaskButton({
@@ -29,6 +37,7 @@ export function TaskContainer({ content, restProps }) {
     })
   )
 
+  // Create inner content (title and dates)
   const fragmentInner = new DocumentFragment()
   fragmentInner.append(TaskTitle({ content }))
   fragmentInner.append(
@@ -38,6 +47,7 @@ export function TaskContainer({ content, restProps }) {
     })
   )
 
+  // Conditionally add end date if present
   if (restProps[ATTRIBUTE_DATA_DATE_END]) {
     fragmentInner.append(
       TaskDate({
@@ -47,6 +57,7 @@ export function TaskContainer({ content, restProps }) {
     )
   }
 
+  // Container for task content and buttons
   const fragmentContainer = new DocumentFragment()
   fragmentContainer.append(
     new CreateElement({
@@ -63,10 +74,12 @@ export function TaskContainer({ content, restProps }) {
     }).init()
   )
 
+  // Set class names based on completion status
   const classNames = restProps[ATTRIBUTE_DATA_COMPLETED]
     ? 'border rounded grid grid-cols-5 gap-2 shadow-md hover:shadow-xl border-green-500 bg-green-50'
     : 'border rounded grid grid-cols-5 gap-2 shadow-md hover:shadow-xl'
 
+  // Compose and return the final task element
   const taskProps = {
     content: fragmentContainer,
     props: {

@@ -13,7 +13,7 @@ import {
 
 export function actions() {
   document.addEventListener('click', event => {
-    const eventType = getType(event.target)
+    const eventType = getEventType(event.target)
 
     if (!eventType) return
 
@@ -21,6 +21,7 @@ export function actions() {
       case EVENT_ACTION.add:
         const elementInput = document.querySelector(SELECTOR_INPUT_ELEMENT)
         handleAdd(elementInput.value)
+        elementInput.value = ''
         break
       case EVENT_ACTION.remove:
         handleRemove(event.target)
@@ -45,22 +46,17 @@ export function actions() {
     }
   })
 
-  document.addEventListener('change', event => {
-    const eventType = getType(event.target)
+  document.addEventListener('keyup', event => {
+    const eventType = getEventType(event.target)
 
-    if (!eventType) return
+    if (!eventType || event.key !== 'Enter') return
 
-    switch (eventType) {
-      case EVENT_ACTION.onChangeAdd:
-        handleAdd(event.target.value)
-        break
-      default:
-        break
-    }
+    handleAdd(event.target.value)
+    event.target.value = ''
   })
 }
 
-function getType(target) {
+function getEventType(target) {
   if (target.hasAttribute(ATTRIBUTE_DATA_ACTION)) {
     return target.getAttribute(ATTRIBUTE_DATA_ACTION)
   }
