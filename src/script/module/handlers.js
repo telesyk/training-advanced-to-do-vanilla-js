@@ -1,12 +1,11 @@
-import render from './render'
 import TaskStore from './store-manager'
 
 export const handleFilter = () => {
   console.log('hadnle filter')
 }
 
-export const handleSorting = () => {
-  console.log('hadnle sorting')
+export const handleSorting = sortBy => {
+  console.log('hadnle sorting', sortBy)
 }
 
 export const handleAdd = value => {
@@ -21,12 +20,10 @@ export const handleAdd = value => {
   }
 
   new TaskStore().add(taskItem)
-  render()
 }
 
 export const handleRemove = itemId => {
   new TaskStore().remove(+itemId)
-  render()
 }
 
 export const handleComplete = itemId => {
@@ -37,5 +34,4 @@ export const handleComplete = itemId => {
     ...currentTask,
     completed: !currentTask.completed,
   })
-  render()
 }

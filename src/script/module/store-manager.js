@@ -1,5 +1,6 @@
 import { STORAGE_NAME } from '../constants.js'
 import mockData from '../mockData.js'
+import render from './render.js'
 
 export default function TaskStore() {
   this.store = JSON.parse(localStorage.getItem(STORAGE_NAME)) || mockData // for development
@@ -17,6 +18,7 @@ export default function TaskStore() {
         JSON.stringify([...this.store, newItem])
       )
       this.store = JSON.parse(localStorage.getItem(STORAGE_NAME) || '[]')
+      render()
     },
     update: currentItem => {
       const updatedStorage = this.store.map(item =>
@@ -24,11 +26,13 @@ export default function TaskStore() {
       )
       localStorage.setItem(STORAGE_NAME, JSON.stringify(updatedStorage))
       this.store = JSON.parse(localStorage.getItem(STORAGE_NAME) || '[]')
+      render()
     },
     remove: id => {
       const updatedStorage = this.store.filter(item => item.id !== id)
       localStorage.setItem(STORAGE_NAME, JSON.stringify(updatedStorage))
       this.store = JSON.parse(localStorage.getItem(STORAGE_NAME) || '[]')
+      render()
     },
   }
 }
