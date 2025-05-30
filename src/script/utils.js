@@ -17,3 +17,14 @@ export function sortByDate(tasks) {
   buttonSort.dataset.sortType = SORTING_TYPE.DESC
   return sortedTasks.reverse()
 }
+
+export function filterTasks(tasks, filterType) {
+  switch (filterType) {
+    case EVENT_ACTION.filterCompleted:
+      return tasks.filter(task => !!task.completed)
+    case EVENT_ACTION.filterInProgress:
+      return tasks.filter(task => !task.completed)
+    default:
+      return tasks
+  }
+}

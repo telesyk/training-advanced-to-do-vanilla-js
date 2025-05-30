@@ -19,7 +19,7 @@ export default function render(state = null) {
 
     fragment.append(elementEmptyList)
   } else {
-    storage.forEach(task => {
+    storage.reverse().forEach(task => {
       const element = Task({
         content: task.title,
         restProps: {

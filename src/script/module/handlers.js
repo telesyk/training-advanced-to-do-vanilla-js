@@ -1,9 +1,12 @@
 import TaskStore from './store-manager'
 import render from './render'
-import { sortByDate } from '../utils'
+import { filterTasks, sortByDate } from '../utils'
 
-export const handleFilter = () => {
-  console.log('hadnle filter')
+export const handleFilter = filterType => {
+  const tasks = new TaskStore().get()
+  const filteredTasks = filterTasks(tasks, filterType)
+
+  render(filteredTasks)
 }
 
 export const handleSorting = () => {
@@ -38,5 +41,6 @@ export const handleComplete = itemId => {
   storage.update({
     ...currentTask,
     completed: !currentTask.completed,
+    dateComplete: currentTask.completed ? null : new Date(),
   })
 }

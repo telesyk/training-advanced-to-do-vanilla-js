@@ -33,13 +33,13 @@ export function actions() {
         handleSorting()
         break
       case EVENT_ACTION.filterAll:
-        handleFilter()
+        handleFilter(EVENT_ACTION.filterAll)
         break
       case EVENT_ACTION.filterCompleted:
-        handleFilter()
+        handleFilter(EVENT_ACTION.filterCompleted)
         break
       case EVENT_ACTION.filterInProgress:
-        handleFilter()
+        handleFilter(EVENT_ACTION.filterInProgress)
         break
       default:
         break
