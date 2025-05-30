@@ -1,3 +1,6 @@
+The project has no straight convention.
+The achievement of this Test project is to practice different approaches.
+
 ### 🗂️ File/Folder Structure
 
 ```pgsql

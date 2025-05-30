@@ -8,8 +8,8 @@ import {
 } from '../constants.js'
 import { Task, EmptyList } from '../components/index.js'
 
-export default function render() {
-  const storage = new TaskStore().get()
+export default function render(state = null) {
+  const storage = state || new TaskStore().get()
   const fragment = new DocumentFragment()
 
   document.querySelector(SELECTOR_ROOT_ELEMENT).innerHTML = ''

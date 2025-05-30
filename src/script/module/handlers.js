@@ -1,11 +1,16 @@
 import TaskStore from './store-manager'
+import render from './render'
+import { sortByDate } from '../utils'
 
 export const handleFilter = () => {
   console.log('hadnle filter')
 }
 
-export const handleSorting = sortBy => {
-  console.log('hadnle sorting', sortBy)
+export const handleSorting = () => {
+  const tasks = new TaskStore().get()
+  const sortedTasks = sortByDate(tasks)
+
+  render(sortedTasks)
 }
 
 export const handleAdd = value => {
