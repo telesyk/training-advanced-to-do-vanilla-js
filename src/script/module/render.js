@@ -5,13 +5,11 @@ import {
   ATTRIBUTE_DATA_DATE_START,
   ATTRIBUTE_DATA_COMPLETED,
   DEFAULT_LOCAL_DATE_STRING,
-  STORAGE_NAME_MUTABLE,
 } from '../constants.js'
 import { Task, EmptyList } from '../components/index.js'
 
-export default function render(state = null) {
-  const storage = state || new TaskStore().get()
-  // const storage = state || new TaskStore(STORAGE_NAME_MUTABLE).get()
+export default function render() {
+  const storage = new TaskStore().get()
   const fragment = new DocumentFragment()
 
   document.querySelector(SELECTOR_ROOT_ELEMENT).innerHTML = ''
@@ -21,11 +19,14 @@ export default function render(state = null) {
 
     fragment.append(elementEmptyList)
   } else {
-    storage.reverse().forEach(task => {
+    storage.forEach(task => {
+      if (task.hidden) return
+
       const element = Task({
         content: task.title,
         restProps: {
           id: task.id,
+          hidden: task.hidden,
           [ATTRIBUTE_DATA_COMPLETED]: task.completed,
           [ATTRIBUTE_DATA_DATE_START]: new Date(
             task.dateCreate

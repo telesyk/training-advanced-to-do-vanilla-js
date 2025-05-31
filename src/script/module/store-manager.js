@@ -1,9 +1,9 @@
-import { STORAGE_NAME_ORIGINAL } from '../constants.js'
+import { STORAGE_NAME } from '../constants.js'
 import mockData from '../mockData.js'
 import render from './render.js'
 
 export default function TaskStore(storeName) {
-  this.storeName = storeName || STORAGE_NAME_ORIGINAL
+  this.storeName = storeName || STORAGE_NAME
   this.store = JSON.parse(localStorage.getItem(this.storeName)) || mockData
 
   return {

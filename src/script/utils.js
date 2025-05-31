@@ -1,11 +1,11 @@
 import { ATTRIBUTE_DATA_ACTION, EVENT_ACTION, SORTING_TYPE } from './constants'
 
-export function sortByDate(tasks) {
+export function sortByDate(list) {
   const buttonSort = document.querySelector(
     `[${ATTRIBUTE_DATA_ACTION}=${EVENT_ACTION.sortByDate}]`
   )
   const currentSortType = buttonSort.dataset.sortType
-  const sortedTasks = tasks.sort((a, b) => {
+  const sortedTasks = list.sort((a, b) => {
     return Date.parse(a.dateCreate) - Date.parse(b.dateCreate)
   })
 
@@ -18,13 +18,33 @@ export function sortByDate(tasks) {
   return sortedTasks.reverse()
 }
 
-export function filterTasks(tasks, filterType) {
+export function filterTasks(list, filterType) {
   switch (filterType) {
     case EVENT_ACTION.filterCompleted:
-      return tasks.filter(task => !!task.completed)
+      return list.map(task => {
+        if (task.completed) return { ...task, hidden: false }
+        return {
+          ...task,
+          hidden: true,
+        }
+      })
     case EVENT_ACTION.filterInProgress:
-      return tasks.filter(task => !task.completed)
+      return list.map(task => {
+        if (!task.completed) return { ...task, hidden: false }
+        return {
+          ...task,
+          hidden: true,
+        }
+      })
     default:
-      return tasks
+      return list.map(task => {
+        return { ...task, hidden: false }
+      })
+  }
+}
+
+export function getEventType(target) {
+  if (target.hasAttribute(ATTRIBUTE_DATA_ACTION)) {
+    return target.getAttribute(ATTRIBUTE_DATA_ACTION)
   }
 }

@@ -1,8 +1,4 @@
-import {
-  EVENT_ACTION,
-  ATTRIBUTE_DATA_ACTION,
-  SELECTOR_INPUT_ELEMENT,
-} from '../constants.js'
+import { EVENT_ACTION, SELECTOR_INPUT_ELEMENT } from '../constants.js'
 import {
   handleAdd,
   handleFilter,
@@ -10,6 +6,7 @@ import {
   handleComplete,
   handleRemove,
 } from './handlers.js'
+import { getEventType } from '../utils.js'
 
 export function actions() {
   document.addEventListener('click', event => {
@@ -54,10 +51,4 @@ export function actions() {
     handleAdd(event.target.value)
     event.target.value = ''
   })
-}
-
-function getEventType(target) {
-  if (target.hasAttribute(ATTRIBUTE_DATA_ACTION)) {
-    return target.getAttribute(ATTRIBUTE_DATA_ACTION)
-  }
 }
