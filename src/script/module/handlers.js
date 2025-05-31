@@ -19,6 +19,7 @@ export const handleSorting = () => {
 export const handleAdd = value => {
   if (!value) return
 
+  const currentList = new TaskStore().get()
   const taskItem = {
     id: Date.now(),
     title: value,
@@ -27,20 +28,31 @@ export const handleAdd = value => {
     dateComplete: null,
   }
 
-  new TaskStore().add(taskItem)
+  new TaskStore().update([...currentList, taskItem])
 }
 
 export const handleRemove = itemId => {
-  new TaskStore().remove(+itemId)
+  if (!itemId) return
+
+  const currentList = new TaskStore().get()
+  const newList = currentList.filter(task => task.id !== +itemId)
+
+  new TaskStore().update(newList)
 }
 
 export const handleComplete = itemId => {
-  const storage = new TaskStore()
-  const currentTask = storage.get().find(item => item.id === +itemId)
+  if (!itemId) return
 
-  storage.update({
-    ...currentTask,
-    completed: !currentTask.completed,
-    dateComplete: currentTask.completed ? null : new Date(),
+  const currentList = new TaskStore().get()
+  const newList = currentList.map(task => {
+    if (task.id !== +itemId) return task
+
+    return {
+      ...task,
+      completed: !task.completed,
+      dateComplete: task.completed ? null : new Date(),
+    }
   })
+
+  new TaskStore().update(newList)
 }
