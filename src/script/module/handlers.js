@@ -9,10 +9,7 @@ export const handleFilter = filterType => {
 }
 
 export const handleSorting = () => {
-  const tasks = new TaskStore().get()
-  const sortedTasks = sortByDate(tasks)
-
-  new TaskStore().update([...sortedTasks])
+  sortByDate()
 }
 
 export const handleAdd = value => {

@@ -18,7 +18,5 @@ export const EVENT_ACTION = {
   onChangeAdd: 'onchange-add',
 }
 export const STORAGE_NAME = 'task-manager-training-project-store'
-export const SORTING_TYPE = {
-  DESC: 'desc',
-  ASC: 'asc',
-}
+export const CLASSNAME_LIST_NORMAL = 'flex-col'
+export const CLASSNAME_LIST_REVERSE = 'flex-col-reverse'

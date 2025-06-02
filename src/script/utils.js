@@ -1,21 +1,16 @@
-import { ATTRIBUTE_DATA_ACTION, EVENT_ACTION, SORTING_TYPE } from './constants'
+import {
+  ATTRIBUTE_DATA_ACTION,
+  CLASSNAME_LIST_NORMAL,
+  CLASSNAME_LIST_REVERSE,
+  EVENT_ACTION,
+  SELECTOR_ROOT_ELEMENT,
+} from './constants'
 
-export function sortByDate(list) {
-  const buttonSort = document.querySelector(
-    `[${ATTRIBUTE_DATA_ACTION}=${EVENT_ACTION.sortByDate}]`
-  )
-  const currentSortType = buttonSort.dataset.sortType
-  const sortedTasks = list.sort((a, b) => {
-    return Date.parse(a.dateCreate) - Date.parse(b.dateCreate)
-  })
+export function sortByDate() {
+  const listElement = document.querySelector(SELECTOR_ROOT_ELEMENT)
 
-  if (currentSortType === SORTING_TYPE.DESC) {
-    buttonSort.dataset.sortType = SORTING_TYPE.ASC
-    return sortedTasks
-  }
-
-  buttonSort.dataset.sortType = SORTING_TYPE.DESC
-  return sortedTasks.reverse()
+  listElement.classList.toggle(CLASSNAME_LIST_NORMAL)
+  listElement.classList.toggle(CLASSNAME_LIST_REVERSE)
 }
 
 export function filterTasks(list, filterType) {

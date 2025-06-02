@@ -18,30 +18,31 @@ export default function render() {
     const elementEmptyList = EmptyList()
 
     fragment.append(elementEmptyList)
-  } else {
-    storage.forEach(task => {
-      if (task.hidden) return
-
-      const element = Task({
-        content: task.title,
-        restProps: {
-          id: task.id,
-          hidden: task.hidden,
-          [ATTRIBUTE_DATA_COMPLETED]: task.completed,
-          [ATTRIBUTE_DATA_DATE_START]: new Date(
-            task.dateCreate
-          ).toLocaleDateString(DEFAULT_LOCAL_DATE_STRING),
-          [ATTRIBUTE_DATA_DATE_END]: task.dateComplete
-            ? new Date(task.dateComplete).toLocaleDateString(
-                DEFAULT_LOCAL_DATE_STRING
-              )
-            : '',
-        },
-      })
-
-      fragment.append(element)
-    })
+    return
   }
+
+  storage.forEach(task => {
+    if (task.hidden) return
+
+    const element = Task({
+      content: task.title,
+      restProps: {
+        id: task.id,
+        hidden: task.hidden,
+        [ATTRIBUTE_DATA_COMPLETED]: task.completed,
+        [ATTRIBUTE_DATA_DATE_START]: new Date(
+          task.dateCreate
+        ).toLocaleDateString(DEFAULT_LOCAL_DATE_STRING),
+        [ATTRIBUTE_DATA_DATE_END]: task.dateComplete
+          ? new Date(task.dateComplete).toLocaleDateString(
+              DEFAULT_LOCAL_DATE_STRING
+            )
+          : '',
+      },
+    })
+
+    fragment.append(element)
+  })
 
   document.querySelector(SELECTOR_ROOT_ELEMENT).append(fragment)
 }
